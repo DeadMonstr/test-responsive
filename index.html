@@ -39,10 +39,11 @@
 
 
 
+
     let pageWidth, pageHeight;
 
     const basePage = {
-        width: 2560,
+        width: 1920,
         height: 1080,
         scale: 1,
         scaleX: 1,
@@ -53,8 +54,8 @@
 
     function getPageSize() {
 
-        pageHeight = container.clientHeight
-        pageWidth = container.clientWidth
+        pageHeight = window.innerHeight
+        pageWidth = window.innerWidth
     }
 
 
@@ -70,7 +71,8 @@
         let newLeftPos = Math.abs(Math.floor(((basePage.width * basePage.scale) - maxWidth)/2));
         let newTopPos = Math.abs(Math.floor(((basePage.height * basePage.scale) - maxHeight)/2));
         console.log(newLeftPos,newTopPos)
-        page.style = '-webkit-transform:scale(' + basePage.scale + ');'
+        // page.style = '-webkit-transform:scale(' + basePage.scale + `);width: ${window.innerWidth + "px"}; height: ${window.innerHeight + "px"} `
+        page.style = '-webkit-transform:scale(' + basePage.scale + `) `
     }
 
 
