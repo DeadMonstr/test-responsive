@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div class="kotta">
+    <main>
+
+        <aside class="left">
+
+        </aside>
+        <div class="container">
+
+            <h1 class="title">Hello world Hello world</h1>
+        </div>
+
+
+
+        <aside class="right">
+
+        </aside>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+    const container = document.querySelector(".kotta")
+    const page = document.querySelector("main")
+
+
+
+    let pageWidth, pageHeight;
+
+    const basePage = {
+        width: 2560,
+        height: 1080,
+        scale: 1,
+        scaleX: 1,
+        scaleY: 1
+    };
+
+
+
+    function getPageSize() {
+
+        pageHeight = container.clientHeight
+        pageWidth = container.clientWidth
+    }
+
+
+
+    function scalePages(page, maxWidth, maxHeight) {
+        let scaleX = 1, scaleY = 1;
+        scaleX = maxWidth / basePage.width;
+        scaleY = maxHeight / basePage.height;
+        basePage.scaleX = scaleX;
+        basePage.scaleY = scaleY;
+        basePage.scale = (scaleX > scaleY) ? scaleY : scaleX;
+
+        let newLeftPos = Math.abs(Math.floor(((basePage.width * basePage.scale) - maxWidth)/2));
+        let newTopPos = Math.abs(Math.floor(((basePage.height * basePage.scale) - maxHeight)/2));
+        console.log(newLeftPos,newTopPos)
+        page.style = '-webkit-transform:scale(' + basePage.scale + ');'
+    }
+
+
+    getPageSize();
+    scalePages(page, pageWidth, pageHeight);
+
+    window.addEventListener("resize", function () {
+        getPageSize();
+        scalePages(page, pageWidth, pageHeight);
+    })
+
+
+
+
+</script>
+
+</body>
+</html>
